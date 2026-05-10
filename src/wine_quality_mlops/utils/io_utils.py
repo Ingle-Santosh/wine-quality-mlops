@@ -4,7 +4,7 @@ import joblib
 from pathlib import Path
 from typing import Any
 
-from datascience.utils.logger import logger
+from wine_quality_mlops.utils.logger import logger
 
 
 def read_yaml(path_to_yaml: Path) -> dict:
