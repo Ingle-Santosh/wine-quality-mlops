@@ -32,25 +32,13 @@ class DataIngestionPipeline:
 
 
 if __name__ == "__main__":
-
     try:
-
-        logger.info(
-            f"Starting {STAGE_NAME}"
-        )
+        logger.info(f"Starting {STAGE_NAME}")
 
         obj = DataIngestionPipeline()
-
         obj.initiate_data_ingestion()
+        logger.info(f"Completed {STAGE_NAME}")
 
-        logger.info(
-            f"Completed {STAGE_NAME}"
-        )
-
-    except Exception:
-
-        logger.exception(
-            f"Error occurred in {STAGE_NAME}"
-        )
-
-        raise
+    except Exception as e:
+        logger.exception(f"Error occurred in {STAGE_NAME}")
+        raise e
