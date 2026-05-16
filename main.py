@@ -3,6 +3,7 @@ from wine_quality_mlops.utils.logger import logger
 from wine_quality_mlops.utils.exceptions import (CustomException)
 from wine_quality_mlops.pipeline.data_ingestion_pipeline import DataIngestionPipeline
 from wine_quality_mlops.pipeline.data_validation_pipeline import DataValidationPipeline
+from wine_quality_mlops.pipeline.data_transformation_pipeline import DataTransformationPipeline
 
 STAGE_NAME = "DATA INGESTION STAGE"
 
@@ -24,6 +25,7 @@ except Exception as e:
 
     raise CustomException(e, sys)
 
+
 STAGE_NAME = "DATA VALIDATION STAGE"
 
 try:
@@ -33,6 +35,27 @@ try:
     data_ingestion = DataValidationPipeline()
 
     data_ingestion.initiate_data_validation()
+
+    logger.info(f"Completed {STAGE_NAME}")
+
+except Exception as e:
+
+    logger.exception(
+        f"Error occurred in {STAGE_NAME}"
+    )
+
+    raise CustomException(e, sys)
+
+
+STAGE_NAME = "DATA TRANSFORMATION STAGE"
+
+try:
+
+    logger.info(f"Starting {STAGE_NAME}")
+
+    data_ingestion = DataTransformationPipeline()
+
+    data_ingestion.initiate_data_transformation()
 
     logger.info(f"Completed {STAGE_NAME}")
 

@@ -82,9 +82,11 @@ class ConfigurationManager:
         data_transformation_config = DataTransformationConfig(
             root_dir=root_dir,
             data_path=Path(config["data_path"]),
+            train_path=root_dir / config["train_path"],
+            test_path=root_dir / config["test_path"],
         )
 
-        return data_transformation_config
+        return data_transformation_config 
 
     def get_model_trainer_config(self) -> ModelTrainerConfig:
 
