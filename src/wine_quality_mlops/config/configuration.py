@@ -91,10 +91,8 @@ class ConfigurationManager:
     def get_model_trainer_config(self) -> ModelTrainerConfig:
 
         config = self.config["model_trainer"]
-
         params = self.params["ElasticNet"]
-
-        schema = self.schema["TARGET_COLUMN"]
+        target_column = self.schema["TARGET_COLUMN"]["name"]
 
         root_dir = self.artifacts_root / config["root_dir"]
 
@@ -107,7 +105,7 @@ class ConfigurationManager:
             model_name=config["model_name"],
             alpha=params["alpha"],
             l1_ratio=params["l1_ratio"],
-            target_column=schema["name"],
+            target_column=target_column
         )
 
         return model_trainer_config
