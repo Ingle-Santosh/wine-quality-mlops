@@ -5,6 +5,7 @@ from wine_quality_mlops.pipeline.data_ingestion_pipeline import DataIngestionPip
 from wine_quality_mlops.pipeline.data_validation_pipeline import DataValidationPipeline
 from wine_quality_mlops.pipeline.data_transformation_pipeline import DataTransformationPipeline
 from wine_quality_mlops.pipeline.model_trainer_pipeline import ModelTrainerPipeline
+from wine_quality_mlops.pipeline.model_evaluation_pipeline import ModelEvaluationPipeline
 
 STAGE_NAME = "DATA INGESTION STAGE"
 
@@ -77,6 +78,27 @@ try:
     data_ingestion = ModelTrainerPipeline()
 
     data_ingestion.initiate_model_trainer()
+
+    logger.info(f"Completed {STAGE_NAME}")
+
+except Exception as e:
+
+    logger.exception(
+        f"Error occurred in {STAGE_NAME}"
+    )
+
+    raise CustomException(e, sys)
+
+
+STAGE_NAME = "MODEL EVALUATION STAGE"
+
+try:
+
+    logger.info(f"Starting {STAGE_NAME}")
+
+    data_ingestion = ModelEvaluationPipeline()
+
+    data_ingestion.initiate_model_evaluation()
 
     logger.info(f"Completed {STAGE_NAME}")
 

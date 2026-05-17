@@ -113,23 +113,21 @@ class ConfigurationManager:
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
 
         config = self.config["model_evaluation"]
-
         params = self.params["ElasticNet"]
-
-        schema = self.schema["TARGET_COLUMN"]
+        target_column = self.schema["TARGET_COLUMN"]["name"]
 
         root_dir = self.artifacts_root / config["root_dir"]
 
         create_directories([root_dir])
 
         model_evaluation_config = ModelEvaluationConfig(
-            root_dir=root_dir,
-            test_data_path=Path(config["test_data_path"]),
-            model_path=Path(config["model_path"]),
-            all_params=params,
-            metric_file_name=root_dir / config["metric_file_name"],
-            target_column=schema["name"],
-            mlflow_uri="https://dagshub.com/krishnaik06/datascienceproject.mlflow",
+            root_dir= root_dir,
+            test_data_path= Path(config["test_data_path"]),
+            model_path= Path(config["model_path"]),
+            all_params= params,
+            metric_file_name= root_dir / config["metric_file_name"],
+            target_column= target_column,
+            mlflow_uri= "https://dagshub.com/inglesantosh09/wine-quality-mlops.mlflow"
         )
 
         return model_evaluation_config
